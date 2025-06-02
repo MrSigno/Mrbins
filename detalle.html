@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Detalle del Curso</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+  }
+  header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444;
+  }
+  h1 {
+    margin: 0;
+  }
+  main {
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  iframe {
+    width: 100%;
+    height: 360px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+  .description ol {
+    padding-left: 20px;
+  }
+  .description p, .description li {
+    margin-bottom: 12px;
+  }
+  .description button {
+    background:#4caf50;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:700;
+    font-size: 1rem;
+  }
+  .description button:hover {
+    background:#388e3c;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 18px;
+    background-color: #4caf50;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+  }
+  .back-link:hover {
+    background-color: #388e3c;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Detalle del Curso</h1>
+</header>
+
+<main id="content">
+  <!-- Contenido dinámico aparecerá aquí -->
+</main>
+
+<a href="vip.html" class="back-link">← Volver a VIP</a>
+
+<script>
+  const content = document.getElementById('content');
+  const urlParams = new URLSearchParams(window.location.search);
+  const curso = urlParams.get('curso');
+
+  const cursosData = {
+    gpay: {
+      titulo: "Google Play Compras Seguras",
+      iframeSrc: "https://drive.google.com/file/d/1gzGMLOWc0bP0flMqBtAXbuZzCuFTnDPd/preview",
+      descripcion: `
+        <p><strong>BIN Compras Play Store</strong></p>
+        <p>Para agregar un BIN (Bank Identification Number) a Google Play en un entorno controlado, sigue estos pasos:</p>
+        <ol>
+          <li>Accede a Google Play Console con la cuenta de desarrollador vinculada a tu app.</li>
+          <li>Ve a Configuración &gt; Métodos de pago o sección similar relacionada con facturación.</li>
+          <li>Busca la opción para agregar o gestionar BINs dentro de la configuración de pagos.</li>
+          <li>Ingresa el número BIN junto con datos adicionales, como emisor, tipo de tarjeta y país.</li>
+          <li>Guarda los cambios y realiza pruebas en el entorno controlado para validar que el BIN funcione correctamente.</li>
+          <li>Asegura el cumplimiento de políticas de Google y normas de seguridad para datos financieros.</li>
+          <li>Ten en cuenta que la gestión de BINs puede requerir permisos especiales o acuerdos con Google y bancos emisores. Siempre trabaja en un ambiente seguro para proteger datos sensibles y mantén registros claros de los cambios.</li>
+        </ol>
+        <p>Así, integras correctamente el BIN en Google Play, facilitando transacciones seguras en tu app.</p>
+        <p><strong>BIN1:</strong> 4169160864xxxxxx</p>
+        <p><strong>BIN ACTUALIZADO:</strong> 41691608647xxxxx<br/>
+        fecha: 08/27<br/>
+        cvv: GEN<br/>
+        ip: su pais</p>
+        <p>Con paciencia, le meten en primera y a gozar!</p>
+      `
+    },
+    capcut: {
+      titulo: "CapCut PRO Descuento",
+      iframeSrc: "https://drive.google.com/file/d/1b_J8RdDGTJ6C-vtLri8D6eT942ybrKjX/preview",
+      descripcion: `
+        <p><strong>Método para tener CapCut Pro más barato</strong></p>
+        <p>¿Quieres tener CapCut Pro más barato pero sin dejar temblando la tarjeta? Te tengo el dato: sí se puede tener CapCut más barato y de forma 100% legal.</p>
+        <p>CapCut Pro, un plan que normalmente cuesta alrededor $20 USD al mes. Peeero… si lo contratas desde país con menor poder adquisitivo, el precio se ajusta a la economía local. Así es: ¡más barato para los nuestros!</p>
+      `
+    },
+    sss: {
+      titulo: "CapCut Pro desde PC",
+      iframeSrc: "https://iframe.mediadelivery.net/embed/ejemplo_sss",
+      descripcion: "<p>Tutorial para crear CapCut Pro desde PC con grandes descuentos, sin complicaciones y fácil de seguir.</p>"
+    },
+    chat: {
+      titulo: "ChatGPT Plus Económico",
+      iframeSrc: "https://iframe.mediadelivery.net/embed/160043/8b7270cc-b868-4a59-aac2-59b0976f0040?autoplay=false&loop=false&muted=false&preload=false&responsive=true",
+      descripcion: `
+        <p>¿Quieres tener ChatGPT Plus mas barato pero sin dejar temblando la tarjeta? Te tengo el dato: sí se puede tener ChatGPT más barato y de forma 100% legal.</p>
+        <p>OpenAI lanzó ChatGPT Plus, un plan que normalmente cuesta $20 USD al mes. Peeero… si lo contratas desde país con menor poder adquisitivo, el precio se ajusta a la economía local. Así es: ¡más barato para los nuestros!</p>
+      `
+    },
+    spotyfam: {
+      titulo: "Spotify Premium Familiar y Duo",
+      iframeSrc: "https://iframe.mediadelivery.net/embed/160043/646f75d9-d31a-452b-82f8-8418c262d9a4?autoplay=false&loop=false&muted=false&preload=false&responsive=true",
+      descripcion: `
+        <p><strong>BIN:</strong> 55791004xxxxxxxx</p>
+        <p><strong>FECHA:</strong> 01/30</p>
+        <p><strong>CVV:</strong> 000</p>
+        <p><strong>IP:</strong> MEXICO o si prefieren pueden calar con su pais.</p>
+      `
+    },
+    gemini: {
+      titulo: "Gemini 2.5 Pro Gratis para Estudiantes",
+      iframeSrc: "https://iframe.mediadelivery.net/embed/ejemplo_gemini",
+      descripcion: `
+        <p><strong>Link de la promoción:</strong></p>
+        <p><button onclick="window.open('https://one.google.com/explore-plan/ai-premium-student?g1_landing_page=5', '_blank')" style="background:#4caf50;color:white;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-weight:700;">Ir a la promoción</button></p>
+        <p>Si eres estudiante, probablemente ya sabes que hay un universo de herramientas premium a solo un par de clics, si tienes el correo institucional correcto. Gemini 2.5 Pro, el modelo AI de Google que compite con ChatGPT, no es la excepción. Pero a ver, ¿cómo rayos se consigue gratis? Te lo cuento como va.</p>
+        <p>Primero, el beneficio está pensado para estudiantes universitarios (sorry, no aplica para el correo del cole). La clave está en acceder a los Google Workspace for Education perks. Para esto necesitas un correo tipo tunombre@universidad.edu o algo por el estilo, que esté verificado por Google.</p>
+        <p><strong>Paso 1:</strong> Confirma que tu correo universitario es válido para beneficios de Google.<br/>
+        Si tu universidad está en la lista de partners de Google (la mayoría en Latinoamérica y España lo están, tranqui), solo tienes que tener acceso al correo. Si nunca lo has usado, es momento de activarlo.</p>
+        <p><strong>Paso 2:</strong> Ve a la página oficial de Gemini<br/>
+        Ojo, el link puede cambiar, pero busca “Gemini student benefits” y el primero que sale es el bueno. Si te sale todo en inglés, no sufras: Google igual detecta tu país y correo.</p>
+        <p><strong>Paso 3:</strong> Inicia sesión con tu correo de la U<br/>
+        Sí, aunque ya tengas una sesión personal abierta. Haz logout y vuelve a entrar, pero con el institucional.</p>
+        <p><strong>Paso 4:</strong> Solicita el beneficio<br/>
+        Cuando entras con tu correo de estudiante, debería salirte una invitación para activar Gemini Advanced gratis, que incluye el modelo Pro (2.5) y acceso prioritario a funciones nuevas, integraciones con Google Docs, Gmail, Drive y, básicamente, la vida premium de la IA.</p>
+        <p><strong>¿Y si no sale la opción gratis?</strong><br/>
+        Aquí viene el plot twist: algunas universidades se tardan en actualizar sus acuerdos. Si no ves el beneficio, busca en la web de tu universidad algún apartado de convenios con Google, o pregunta al área de soporte TI o biblioteca virtual. Muchas veces tienen que activar el “perk” desde el portal interno.</p>
+        <p><strong>Consejo pro:</strong> No uses el beneficio solo para tareas. Gemini 2.5 Pro tiene potencial para código, brainstorming, generación de imágenes, resúmenes y un largo etcétera. Es como tener un compa genio 24/7 que no te juzga ni cobra.</p>
+      `
+    },
+    max: {
+      titulo: "MAX Premium Gratis",
+      iframeSrc: "https://iframe.mediadelivery.net/embed/160043/e96fe72c-f6e1-467a-8b77-4e4f3467222e?autoplay=false&loop=false&muted=false&preload=false&responsive=true",
+      descripcion: `
+        <p><strong>BIN:</strong> 48679600756xxxxx</p>
+        <p><strong>BIN:</strong> 4867960075xxxxxx</p>
+        <p><strong>FECHA:</strong> 08/29</p>
+        <p><strong>VPN:</strong> USA</p>
+      `
+    },
+    uned: {
+      titulo: "Correo Institucional - Tutorial",
+      iframeSrc: "https://iframe.mediadelivery.net/embed/160043/7310d875-efc8-4d91-9dcb-86b281ea5c65?autoplay=false&loop=false&muted=false&preload=false&responsive=true",
+      descripcion: `
+        <p>Aprende a crear y activar un correo institucional en pocos minutos, con el cual podrás obtener beneficios exclusivos que solo se les dan a los Estudiantes. Y tú hoy los podrás reclamar sin ser uno, ya que con este método obtendremos un correo institucional 100% real.</p>
+        <p>Que podremos usar después en otro tutorial para activar el Beneficio de GitHub Students y activar inteligencias artificiales, totalmente ¡GRATIS! que son de paga.</p>
+      `
+    },
+    dis: {
+      titulo: "Disney+ Gratis con BIN",
+      iframeSrc: "https://iframe.mediadelivery.net/embed/160043/a8d5dcf7-029c-46c1-b6c9-ab3585d720e4?autoplay=false&loop=false&muted=false&preload=false&responsive=true",
+      descripcion: `
+        <p><strong>BIN:</strong> 4772890013</p>
+        <p><strong>Fecha:</strong> 12/28</p>
+        <p><strong>IP:</strong> Peru</p>
+        <p>El mismo BIN lo usan en Disney+.</p>
+      `
+    }
+  };
+
+  if (curso && cursosData[curso]) {
+    const data = cursosData[curso];
+    content.innerHTML = `
+      <h2>${data.titulo}</h2>
+      <iframe src="${data.iframeSrc}" allowfullscreen allow="autoplay; fullscreen"></iframe>
+      <div class="description">${data.descripcion}</div>
+    `;
+  } else {
+    content.innerHTML = "<p>Curso no encontrado. Por favor, regresa y selecciona un curso válido.</p>";
+  }
+</script>
+
+</body>
+</html>

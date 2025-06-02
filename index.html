@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - MrSigno</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset y estilos básicos */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+      position: relative;
+    }
+    body::before,
+    body::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.3;
+      z-index: 0;
+    }
+    body::before {
+      width: 400px;
+      height: 400px;
+      background: #3b3b98;
+      top: -100px;
+      left: -100px;
+    }
+    body::after {
+      width: 600px;
+      height: 600px;
+      background: #16213e;
+      bottom: -200px;
+      right: -200px;
+    }
+    .login-container {
+      background-color: #1a1a2e;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .logo-m {
+      font-weight: 900;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      user-select: none;
+    }
+    .input-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: white;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      background-color: #2a2a4a;
+      color: white;
+      box-shadow: inset 0 0 5px #1f1f3a;
+      transition: box-shadow 0.3s ease;
+    }
+    .input-group input::placeholder {
+      color: #9999bb;
+    }
+    .input-group input:focus {
+      outline: none;
+      box-shadow: 0 0 8px #3b3b98;
+      background-color: #353562;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #3b3b98;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: inherit;
+    }
+    button:hover {
+      background-color: #2a2a72;
+    }
+    .error-msg {
+      color: #ff5555;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: none;
+      text-align: center;
+      text-shadow: 0 0 4px #aa4444;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo-m">MrSigno</div>
+    <p id="errorMsg" class="error-msg">Complete todos los campos, son necesarios.</p>
+    <form id="loginForm" novalidate>
+      <div class="input-group">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" name="usuario" placeholder="Usuario" />
+      </div>
+      <div class="input-group">
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" />
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const usuarioInput = document.getElementById('usuario');
+    const contrasenaInput = document.getElementById('contrasena');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      errorMsg.style.display = 'none';
+
+      const usuario = usuarioInput.value.trim();
+      const contrasena = contrasenaInput.value.trim();
+
+      if (!usuario || !contrasena) {
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      if (
+        (usuario === 'admin' && contrasena === '1234') ||
+        (usuario === 'usuario' && contrasena === '4321') ||
+        ((usuario === 'Neto' || usuario === 'shannel' || usuario === 'lucas') && contrasena === 'hack22')
+      ) {
+        const rol = (usuario === 'admin') ? 'admin' : 'user';
+        localStorage.setItem('rol', rol);
+        localStorage.setItem('nombreUsuario', usuario);
+        window.location.href = 'vip.html';
+      } else {
+        alert('Usuario o contraseña incorrectos');
+      }
+    });
+  </script>
+</body>
+</html>

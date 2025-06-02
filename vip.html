@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VIP - Cursos y Premium</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #eee;
+    margin: 0;
+    padding: 0 20px 40px 20px;
+  }
+  header {
+    padding: 20px 0;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  h1 {
+    margin: 0;
+    flex: 1 1 100%;
+    text-align: center;
+  }
+  /* NAV con fondo verde igual a gallery-item */
+ header nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  background: #23504F; /* verde más claro */
+  padding: 10px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px #5acd5a; /* sombra inicial verde clara */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 100%;
+  justify-content: flex-end;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+/* Animación de glow pulsante */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px #5acd5a;
+  }
+  50% {
+    box-shadow: 0 0 20px #9cff95;
+  }
+}
+
+header nav:hover {
+  background: #2ea32e; /* verde aún más claro al hover */
+  animation: glowPulse 2s infinite alternate;
+  box-shadow: 0 0 20px #9cff95;
+}
+
+header nav a {
+  color: #ffffff; /* letras blancas */
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+header nav a:hover {
+  background-color: #4caf50;
+  color: white;
+  box-shadow: 0 0 8px #4caf50;
+}
+
+  header nav button {
+    background: linear-gradient(135deg, #7c3aed, #4b2ed6);
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+  }
+  header nav button:hover {
+    background: linear-gradient(135deg, #a56efc, #5b3aed);
+    box-shadow: 0 6px 18px rgba(165, 110, 252, 0.8);
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 320px);
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+  }
+  .gallery-item {
+    width: 320px;
+    height: 250px;
+    background-color: #23504F;
+    border: 3px solid #4caf50;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 6px #444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    cursor: default;
+    box-sizing: border-box;
+  }
+  .gallery-item:hover {
+    box-shadow: 0 0 15px #4caf50;
+    transform: scale(1.03);
+  }
+  .gallery-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .gallery-summary {
+    font-size: 0.75rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+    flex-grow: 0;
+    height: 2.4em;
+    line-height: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+  .gallery-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  .gallery-button:hover {
+    background-color: #388e3c;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+  }
+  .modal.open {
+    display: flex;
+  }
+  .modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+  }
+  .close-btn {
+    position: fixed;
+    top: 20px; right: 20px;
+    background: #6b2ed6;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 11;
+  }
+  .close-btn:hover {
+    background: #5322a9;
+  }
+  footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .gallery {
+      grid-template-columns: repeat(2, 320px);
+      max-width: 680px;
+    }
+  }
+  @media (max-width: 640px) {
+    .gallery {
+      grid-template-columns: 1fr;
+      max-width: 320px;
+    }
+    header nav {
+      gap: 15px;
+      padding: 10px 15px;
+    }
+    header nav a, header nav button {
+      padding: 6px 10px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>VIP - Plataforma de Cursos</h1>
+  <nav>
+    <a href="#" id="cursosBtn">Cursos</a>
+    <a href="#" id="userLink">Usuario Premium</a>
+    <a href="#">Suscripción Premium</a>
+    <button id="logoutBtn">Cerrar sesión</button>
+  </nav>
+</header>
+
+<div class="gallery">
+  <div class="gallery-item">
+    <img src="images/gpay.jpg" alt="Miniatura gpay" class="gallery-image" />
+    <div class="gallery-summary">BIN Google Play CUALQUIER pais para hacer compras [SIN LIVES][COMPRAS ALTAS]</div>
+    <button class="gallery-button" onclick="window.location.href='detalle.html?curso=gpay'">Ver más</button>
+  </div>
+  <div class="gallery-item">
+    <img src="images/capcut.webp" alt="Miniatura 2" class="gallery-image" />
+    <div class="gallery-summary">Como crear CapCut PRO mas barato desde cualquier pais [+80% de descuento]</div>
+    <button class="gallery-button" onclick="window.location.href='detalle.html?curso=capcut'">Ver más</button>
+  </div>
+  <div class="gallery-item">
+    <img src="images/sss.webp" alt="Miniatura 3" class="gallery-image" />
+    <div class="gallery-summary">Como crear CapCut Pro mas barato desde cualquier pais [+85% descuento][Desde PC]</div>
+    <button class="gallery-button" onclick="window.location.href='detalle.html?curso=sss'">Ver más</button>
+  </div>
+  <div class="gallery-item">
+    <img src="images/chat.webp" alt="Miniatura 4" class="gallery-image" />
+    <div class="gallery-summary">Como crear ChatGPT Plus mas barato desde cualquier pais sinn VPN o Proxy</div>
+    <button class="gallery-button" onclick="window.location.href='detalle.html?curso=chat'">Ver más</button>
+  </div>
+  <div class="gallery-item">
+    <img src="images/spotyfam.webp" alt="Miniatura 5" class="gallery-image" />
+    <div class="gallery-summary">Como crear Spotify Premium Familiar y Duo - autopagables BIN [Funcionando]</div>
+    <button class="gallery-button" onclick="window.location.href='detalle.html?curso=spotyfam'">Ver más</button>
+  </div>
+  <div class="gallery-item">
+    <img src="images/gemini.webp" alt="Miniatura 6" class="gallery-image" />
+    <div class="gallery-summary">Como obtener Gemini 2.5 Pro ¡TOTALMENTE GRATIS! por casi 2 años.</div>
+    <button class="gallery-button" onclick="window.location.href='detalle.html?curso=gemini'">Ver más</button>
+  </div>
+  <div class="gallery-item">
+    <img src="images/max.webp" alt="Miniatura 7" class="gallery-image" />
+    <div class="gallery-summary">Crear cuentas de  MAX Premium totalmente gratis [CON PROVEEDOR] [TUTORIAL]</div>
+    <button class="gallery-button" onclick="window.location.href='detalle.html?curso=max'">Ver más</button>
+  </div>
+  <div class="gallery-item">
+    <img src="images/uned.webp" alt="Miniatura 8" class="gallery-image" />
+    <div class="gallery-summary">Crear y activar un correo Institucional en menos de 5 minutos [TUTORIAL]</div>
+    <button class="gallery-button" onclick="window.location.href='detalle.html?curso=uned'">Ver más</button>
+  </div>
+  <div class="gallery-item">
+    <img src="images/dis.jpg" alt="Miniatura 9" class="gallery-image" />
+    <div class="gallery-summary">Crear cuentas de Disney+ ¡GRATIS! con Beneficio VISA 3 meses [PERÚ] [JUNIO]</div>
+    <button class="gallery-button" onclick="window.location.href='detalle.html?curso=dis'">Ver más</button>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <button class="close-btn" id="closeBtn">Cerrar ✖</button>
+  <img src="" alt="Imagen ampliada" class="modal-content" id="modalImage" />
+</div>
+
+<footer>
+  &copy; 2025 Plataforma VIP. Todos los derechos reservados.
+</footer>
+
+<script>
+  window.onload = () => {
+    const nombreUsuario = localStorage.getItem('nombreUsuario');
+    const userLink = document.getElementById('userLink');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if(nombreUsuario) {
+      if(userLink) userLink.textContent = nombreUsuario;
+    } else {
+      if(userLink) userLink.textContent = 'Usuario Premium';
+    }
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('nombreUsuario');
+      localStorage.removeItem('rol');
+      window.location.href = 'index.html';
+    });
+
+    document.getElementById('cursosBtn').addEventListener('click', e => {
+      e.preventDefault();
+      location.reload();
+    });
+  };
+
+  const gallery = document.querySelector('.gallery');
+  const modal = document.getElementById('modal');
+  const modalImage = document.getElementById('modalImage');
+  const closeBtn = document.getElementById('closeBtn');
+
+  gallery.addEventListener('click', e => {
+    if(e.target.classList.contains('gallery-image') || e.target.classList.contains('gallery-button')) {
+      let imgSrc;
+      if(e.target.classList.contains('gallery-image')) {
+        imgSrc = e.target.src;
+      } else if(e.target.classList.contains('gallery-button')) {
+        const galleryItem = e.target.closest('.gallery-item');
+        if(galleryItem) {
+          const img = galleryItem.querySelector('.gallery-image');
+          if(img) imgSrc = img.src;
+        }
+      }
+      if(imgSrc) {
+        modalImage.src = imgSrc;
+        modal.classList.add('open');
+      }
+    }
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('open');
+  });
+
+  modal.addEventListener('click', e => {
+    if(e.target === modal) {
+      modal.classList.remove('open');
+    }
+  });
+</script>
+
+</body>
+</html>
